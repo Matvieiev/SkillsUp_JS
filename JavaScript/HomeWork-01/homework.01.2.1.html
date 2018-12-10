@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+		var totalCost = parseFloat(prompt("Введите потраченную сумму денег за все время: ", ""));
+		var currentProductCost = parseFloat(prompt("Введите сумму текущей покупки: ", ""));
+		var discount = null;
+		if(totalCost <= 0){
+			alert("Введена некорректная сумма");
+		} else if(totalCost > 0 && totalCost <= 999){
+			discount = 2;
+		} else if(totalCost >= 1000 && totalCost <= 2999){
+			discount = 5;
+		} else if(totalCost >= 3000 && totalCost <= 9999){
+			discount = 8;
+		} else if(totalCost >= 10000){
+			discount = 10;
+		}
+		alert("Ваша скидка составляет "+discount+"%");
+		alert("Стоимость текущей покупки с учетом скидки " + (currentProductCost - (currentProductCost * discount) / 100));
+	</script>
+</body>
+</html>
