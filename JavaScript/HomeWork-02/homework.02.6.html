@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script>
+
+		var inputSize = (prompt("Введите размер в международном формате: ", "")).trim();
+		var worldSize = inputSize.toUpperCase();
+
+		switch(worldSize){
+			case "XS":
+				alert("Международному формату " + worldSize + " соответствует европейский размер 32-36.");
+				break;
+			case "S":
+				alert("Международному формату " + worldSize + " соответствует европейский размер 36-40.");
+				break;
+			case "M":
+				alert("Международному формату " + worldSize + " соответствует европейский размер 40-44.");
+				break;
+			case "L":
+				alert("Международному формату " + worldSize + " соответствует европейский размер 44-48.");
+				break;
+			case "XL":
+				alert("Международному формату " + worldSize + " соответствует европейский размер 48-52.");
+				break;
+			case "XXL":
+				alert("Международному формату " + worldSize + " соответствует европейский размер 52-56.");
+				break;
+			default:
+				alert(worldSize + " не является размером одежды в международном формате.");
+		}
+	</script>
+</body>
+</html>
