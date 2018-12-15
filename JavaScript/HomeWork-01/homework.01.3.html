@@ -5,30 +5,35 @@
 </head>
 <body>
 	<script>
+		var inputSize = (prompt("Введите размер в международном формате: ", "")).trim();
 
-		var inputSize = prompt("Введите размер в международном формате: ", "");
-		var worldSize = inputSize.toUpperCase();
 
-		if(worldSize == "XS"){
-			alert("Международному формату " + worldSize + " соответствует европейский размер 32-36.");
-		}
-		else if(worldSize == "S"){
-			alert("Международному формату " + worldSize + " соответствует европейский размер 36-40.");
-		}
-		else if(worldSize == "M"){
-			alert("Международному формату " + worldSize + " соответствует европейский размер 40-44.");
-		}
-		else if(worldSize == "L"){
-			alert("Международному формату " + worldSize + " соответствует европейский размер 44-48.");
-		}
-		else if(worldSize == "XL"){
-			alert("Международному формату " + worldSize + " соответствует европейский размер 48-52.");
-		}
-		else if(worldSize == "XXL"){
-			alert("Международному формату " + worldSize + " соответствует европейский размер 52-56.");
-		}
-		else {
-			alert(worldSize + " не является размером одежды в международном формате.");
+		if(inputSize !== null && inputSize !== undefined){
+			var worldSize = inputSize.toUpperCase();
+
+			if(worldSize == "XS"){
+				alert("Международному формату " + worldSize + " соответствует европейский размер 32-36.");
+			}
+			else if(worldSize == "S"){
+				alert("Международному формату " + worldSize + " соответствует европейский размер 36-40.");
+			}
+			else if(worldSize == "M"){
+				alert("Международному формату " + worldSize + " соответствует европейский размер 40-44.");
+			}
+			else if(worldSize == "L"){
+				alert("Международному формату " + worldSize + " соответствует европейский размер 44-48.");
+			}
+			else if(worldSize == "XL"){
+				alert("Международному формату " + worldSize + " соответствует европейский размер 48-52.");
+			}
+			else if(worldSize == "XXL"){
+				alert("Международному формату " + worldSize + " соответствует европейский размер 52-56.");
+			}
+			else {
+				alert(worldSize + " не является размером одежды в международном формате.");
+			}
+		} else {
+			alert("Вы ничего не ввели. Всего хорошего!");
 		}
 
 	</script>
