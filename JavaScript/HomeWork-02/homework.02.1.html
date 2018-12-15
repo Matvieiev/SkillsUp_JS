@@ -8,21 +8,29 @@
 		document.write("Output variable with cycle \"for\" "+'</br>');
 		for(var i = -100; i<=100; i++){
 			document.write(i + '</br>');
+		for(var i = 100; i >= -100; i--) {
+    		document.write(i + "<br>");
 		}
 
 		document.write("Output variable with cycle \"while\" "+'</br>');
 		var j = -100
 		while(j <= 100){
+		var j = 100;
+		while(j >= -100){
 			document.write(j + '</br>');
 			j++;
+			j--;
 		}
 
 		document.write("Output variable with cycle \"do-while\" "+'</br>');
 		var k = -100;
+		var k = 100;
 		do{
 			document.write(k + '</br>');
 			k++;
 		} while(k <= 100)
+			k--;
+		} while(k >= -100)
 	</script>
 </body>
 </html>
