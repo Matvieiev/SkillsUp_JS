@@ -4,31 +4,40 @@
 	<title></title>
 </head>
 <body>
-	<script>
-		document.write("All even numbers from 150 to 200 with cycle \"for\" "+'</br>');
-		for(var i = 150; i<=200; i++){
-			if(i%2 == 0){
-				document.write(i + '</br>');
+	<script type="text/javascript">
+		var inputEmail = prompt("Введите ваш email", "");
+
+		if(inputEmail !== 0 || inputEmail !== undefined){
+			var emailTrim = inputEmail.trim();
+			var email = emailTrim.toLowerCase();
+
+			var indexDog = email.indexOf("@");
+			var indexDot = email.indexOf(".");
+
+			if(indexDog > -1 && indexDot > -1 && indexDog > 0){
+				var lastDog = email.lastIndexOf("@");
+				var lastDot = email.lastIndexOf(".");
+				var pos = lastDot - lastDog;
+				var beforeDog = email.substring(0, lastDog);
+				var dogAfter = email.substr(lastDog, email.length - 1);
+
+				if(beforeDog.indexOf("@") < 0 && pos > 1) {
+					var repstr = "";
+					for (var i = 0; i<beforeDog.length; i++) {
+						repstr += "*";
+					}
+
+					alert(" Ваш email  " + repstr+dogAfter + " является валидным");
+				} else {
+					alert("Email  " + email + " невалидный");
+				}
+			} else {
+				alert("Email  " + email + " невалидный");
 			}
+		} else {
+			alert("Вы ничего не ввели");
 		}
 
-		document.write("All even numbers from 150 to 200 with cycle \"while\" "+'</br>');
-		var j = 150
-		while(j <= 200){
-			if(j%2 == 0){
-				document.write(j + '</br>');
-			}
-			j++;
-		}
-
-		document.write("All even numbers from 150 to 200 with cycle \"do-while\" "+'</br>');
-		var k = 150;
-		do{
-			if(k%2 == 0){
-				document.write(k + '</br>');
-			}
-			k++;
-		} while(k <= 200)
 	</script>
 </body>
 </html>

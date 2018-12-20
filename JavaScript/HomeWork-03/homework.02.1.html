@@ -4,27 +4,33 @@
 	<title></title>
 </head>
 <body>
-	<script>
+	<script type="text/javascript">
+		var inputEmail = prompt("Введите ваш email", "");
 
-		var emailInput = (prompt("Введите свой email", "")).trim();
+		if(inputEmail !== 0 || inputEmail !== undefined){
+			var emailTrim = inputEmail.trim();
+			var email = emailTrim.toLowerCase();
 
+			var indexDog = email.indexOf("@");
+			var indexDot = email.indexOf(".");
 
-		if(email !==  null || email !== undefined){
-			var email = emailInput.toLowerCase();
-			alert("Your email: " + email);
+			if(indexDog > -1 && indexDot > -1 && indexDog > 0){
+				var lastDog = email.lastIndexOf("@");
+				var lastDot = email.lastIndexOf(".");
+				var pos = lastDot - lastDog;
+				var startDog = email.substring(0, lastDog);
+
+				if(startDog.indexOf("@") < 0 && pos > 1) {
+					alert("Email  " + email + " является валидным");
+				} else {
+					alert("Email  " + email + " невалидный");
+				}
+			} else {
+				alert("Email  " + email + " невалидный");
+			}
 		} else {
-			alert("Вы не ввели email!");
+			alert("Вы ничего не ввели");
 		}
-
-
-		// if(email !==  null || email !== undefined){
-		// 	if() {
-		// 		alert("email "+ emailInput +" является валидным");
-		// 	} else {
-		// 		alert("email "+ emailInput +" невалидный");
-		// 	}
-		// }
-
 	</script>
 </body>
 </html>

@@ -4,11 +4,26 @@
 	<title></title>
 </head>
 <body>
-	<script>
-		document.write("30 элементов последовательности: 4 7 10 13.... " + '</br>');
+	<script type="text/javascript">
+		var inputText = prompt("Введите ваш текст", "");
 
-		for(var i = 4, j=0; j<30; i=i+3, j++){
-			document.write(i + '</br>');
+		if(inputText === null || inputText === undefined || inputText === 0){
+			alert("Вы не ввели текст");
+		} else{
+			var textTrim = inputText.trim();
+			var text = textTrim.split(" ");
+			console.log(text);
+			var newStr = "";
+			var space = " ";
+
+			for(var i = 0, j = 1; i < text.length, j < text.length; i=i+2, j=j+2){
+				newStr+=text[i].toLowerCase();
+				newStr+=space;
+				newStr+=text[j].toUpperCase();
+				newStr+=space;
+			}
+
+			alert(newStr.trim());
 		}
 
 	</script>

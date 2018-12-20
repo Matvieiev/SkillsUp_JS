@@ -4,13 +4,24 @@
 	<title></title>
 </head>
 <body>
-	<script>
-		var userNumber = parseInt(prompt("Введите число: ", ""));
-		var factorial = 1;
-		for(var i=1; i<=userNumber; i++){
-			factorial = i*factorial;
+	<script type="text/javascript">
+		var inputNumber = parseFloat(prompt("Введите число", ""));
+
+		if(inputNumber === undefined || inputNumber === 0){
+			alert("Вы не ввели число");
+		} else {
+			var isNumber = Number.isNaN(inputNumber);
+
+			if(!isNumber){
+				if(Number.isInteger(inputNumber)){
+					alert(inputNumber);
+				} else {
+					alert( Math.round(inputNumber * 100) / 100 );
+				}
+			} else {
+			alert("Вы ввели не число");
+			}
 		}
-		alert("Факториал числа "  + userNumber + "! равен " + factorial);
 	</script>
 </body>
 </html>

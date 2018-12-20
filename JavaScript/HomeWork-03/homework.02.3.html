@@ -4,23 +4,36 @@
 	<title></title>
 </head>
 <body>
-	<script>
+	<script type="text/javascript">
+		var inputText = prompt("Введите ваш текст", "");
 
-		var sum = 0;
-		for(var i = 1; i<=200; i++){
-			if(i%3 == 0){
-				sum = sum + i;
+		if(inputText === null || inputText === undefined || inputText === 0){
+			alert("Вы не ввели текст");
+		} else{
+			var textTrim = inputText.trim();
+			var maxLength = parseInt(prompt("Введите максимальную длину текста", ""));
+
+			if(maxLength === null || maxLength === undefined || maxLength === 0){
+				alert("Вы не ввели максимальную длину строки");
+			} else if(maxLength !== 0 || maxLength !== undefined || maxLength !== null){
+				if(Number(maxLength) === maxLength || !isNaN(maxLength)){
+					if(maxLength >= textTrim.length){
+						alert(textTrim);
+					} else if(maxLength < 4){
+						alert("...");
+					} else {
+						var text = textTrim.length;
+						var dots = "...";
+						maxLength -= 3;
+						console.log(maxLength);
+						var newStr = textTrim.substr(0, maxLength);
+						alert(newStr+dots);
+					}
+				} else {
+					alert("Вы ввели не число");
+				}
 			}
 		}
-		document.write("The sum %3 " + sum + '</br>');
-
-		var sum2 = 0;
-		for(var i = 1; i<=200; i++){
-			if(i%5 == 0){
-				sum2 = sum2 + i;
-			}
-		}
-		document.write("The sum %5 " + sum2);
 
 	</script>
 </body>

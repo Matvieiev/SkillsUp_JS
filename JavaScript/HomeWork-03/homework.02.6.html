@@ -4,33 +4,47 @@
 	<title></title>
 </head>
 <body>
-	<script>
+	<script type="text/javascript">
 
-		var inputSize = (prompt("Введите размер в международном формате: ", "")).trim();
-		var worldSize = inputSize.toUpperCase();
+		alert("Игра угадай число!");
+		var count = 5;
+		var randNum = Math.floor(Math.random()*100+1);
+		console.log(randNum);
 
-		switch(worldSize){
-			case "XS":
-				alert("Международному формату " + worldSize + " соответствует европейский размер 32-36.");
-				break;
-			case "S":
-				alert("Международному формату " + worldSize + " соответствует европейский размер 36-40.");
-				break;
-			case "M":
-				alert("Международному формату " + worldSize + " соответствует европейский размер 40-44.");
-				break;
-			case "L":
-				alert("Международному формату " + worldSize + " соответствует европейский размер 44-48.");
-				break;
-			case "XL":
-				alert("Международному формату " + worldSize + " соответствует европейский размер 48-52.");
-				break;
-			case "XXL":
-				alert("Международному формату " + worldSize + " соответствует европейский размер 52-56.");
-				break;
-			default:
-				alert(worldSize + " не является размером одежды в международном формате.");
+		while(count > 0){
+			var playerNum = prompt("Попробуйте угадать число от 0 до 100. У Вас " +count+ " попыток: ", "");
+
+			if(playerNum === 0 || playerNum === undefined
+			|| isNaN(playerNum)){
+				alert("Как хотите. До свидания!!!");
+			} else if(playerNum !== 0 || playerNum !== undefined
+			|| !isNaN(playerNum)){
+				var parseInputNum = parseInt(playerNum);
+
+				if(parseInputNum > 0 && parseInputNum <= 100){
+
+					if(randNum === parseInputNum){
+						alert("Ура!!! Вы угадали!!!");
+						break;
+					} else if(randNum > parseInputNum){
+						alert("Ваше число меньше загаданного.");
+					} else if(randNum < parseInputNum){
+						alert("Ваше число больше загаданного.");
+					}
+
+
+				} else if(playerNum < 0 || playerNum > 100){
+					alert("Число выходит за рамки диапазона!!!");
+				}
+
+			}
+			count--;
 		}
+		if (count == 0){
+			alert("В следующий раз повезет :)");
+		}
+
+		// немного кривовато, буду рад замечаниям!
 	</script>
 </body>
 </html>
