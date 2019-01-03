@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+		//filter arr with method "filter"
+	console.log('filter arr with method "filter"');
+	function getFilteredNumbersFilter(array, firstNumber, lastNumber) {
+    	return array.filter(function (element) {
+   	 		return element >= firstNumber && element <= lastNumber;
+   		});
+   	}
+
+    var numbersArray = [1, 3, 45, 11, -2, 41, 31, 5, -123, 5.32, -0.025, 12];
+    var numb1 = 10;
+    var numb2 = 50;
+    console.log("Initial numbers:", numbersArray);
+
+    var filteredNumbersFilter = getFilteredNumbersFilter(numbersArray, numb1, numb2);
+    console.log("New filtered array \" filter\": ", filteredNumbersFilter);
+
+
+    //filter arr with cycle "for"
+	console.log('filter arr with cycle "for"');
+    function getFilteredNumbersFor(array, firstNumber, lastNumber) {
+      var bigNumbers = [];
+      for(var i = 0; i < array.length; i++) {
+        if(array[i] >= firstNumber && array[i] <= lastNumber) {
+          bigNumbers.push(array[i]);
+        }
+      }
+      return bigNumbers;
+    }
+
+    var filteredNumbersFor = getFilteredNumbersFor(numbersArray, numb1, numb2);
+	console.log("New filtered array wit \"for\": ", filteredNumbersFor);
+</script>
+</body>
+</html>

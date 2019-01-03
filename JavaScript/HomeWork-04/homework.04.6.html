@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<script type="text/javascript">
+
+
+
+		function findMaxElement(array){
+			function sIncrease(i, ii) {
+			 if (i > ii){
+			 	return 1;
+			 }else if (i < ii){
+			 	return -1;
+			 } else{
+			 	return 0;
+			 }
+			}
+			var newArray =  array.sort(sIncrease);
+			return newArray[newArray.length -1];
+		}
+
+		var arr = [ -5, 8, 7, 6, 5, -4, 3, 2, 1, -122, 111];
+		var maxElem = findMaxElement(arr);
+		var max = Math.max.apply(null, arr);
+		console.log(maxElem);
+		console.log(max);
+	</script>
+</body>
+</html>
