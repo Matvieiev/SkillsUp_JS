@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Check number</title>
+</head>
+<body>
+  <div>
+
+    <div class="container">
+      <label>Введите ваше число</label>
+      <input type="text"
+             placeholder="Введите ваше число"
+             name="inputNumber"
+             id="inputNumber">
+    </div>
+    <button class="Button Button-submit"  onclick="onChooseColorClick()">Проверить</button>
+  </div>
+  <script>
+    function onChooseColorClick(){
+      var num = document.getElementById("inputNumber").value;
+      var color = document.getElementById("inputNumber");
+
+      if(parseFloat(num) >= 1 && parseFloat(num) <=100){
+        color.style.background = "green";
+      } else if (parseFloat(num) < 1 || parseFloat(num) > 100) {
+        color.style.background = "red";
+      } else if (!Number(num)){
+        color.style.background = "grey";
+      }
+    }
+  </script>
+</body>
+</html>

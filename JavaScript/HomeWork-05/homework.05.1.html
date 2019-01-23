@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>О себе</title>
+
+  <style>
+
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1>О себе</h1>
+
+    <ul id="list">
+      <li>Ник: <span id="nickname"></span>
+      <li>Любимые фильмы:  <span id="favorite-movies"></span>
+      <li>Хобби: <span id="hobbies"></span>
+      <li>Родной город: <span id="hometown"></span>
+     </ul>
+
+    <button onclick = "tellAboutMyself()">Рассказать о себе</button>
+  </div>
+  <script>
+    var styleTag = document.getElementsByTagName("style")[0];
+    var styleText = document.createTextNode(".list-item{color: blue;}");
+    styleTag.appendChild(styleText);
+
+    function tellAboutMyself() {
+      var nick = document.getElementById("nickname");
+      var nickText = document.createTextNode("DMblTPO");
+      nick.appendChild(nickText);
+
+      var movie = document.getElementById("favorite-movies");
+      var movieText = document.createTextNode("Titanic");
+      movie.appendChild(movieText);
+
+      var hobby = document.getElementById("hobbies");
+      var hobbyText = document.createTextNode("Play football");
+      hobby.appendChild(hobbyText);
+
+      var city = document.getElementById("hometown");
+      var cityText = document.createTextNode("Dnipro");
+      city.appendChild(cityText);
+
+
+      var list = document.getElementsByTagName("li");
+      for(var i=0; i < list.length; i++){
+       // list[i].classList.add("list-item");
+        list[i].setAttribute("class","list-item");
+      }
+
+      document.getElementById("content").style.font = "Arial";
+
+      document.getElementsByTagName("button")[0].disabled = true;
+      console.log("DONE!!!");
+    };
+
+  </script>
+ </body>
+</body>
+</html>

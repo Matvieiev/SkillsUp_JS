@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS dom-elemnt creation</title>
+</head>
+<body>
+  <div>
+    <div>
+      <div class="container">
+      <label>First name</label>
+      <input type="text"
+             placeholder="Enter first name"
+             name="firstName">
+
+      <label>Last name</label>
+      <input type="password"
+             placeholder="Enter last name"
+             name="lastName">
+
+      <label>Phone numbers</label>
+      <div>
+        <div id="phoneNumbersContainer">
+        <input type="phone"
+               placeholder="Enter your phone number (1)"
+               name="phoneNumber"
+        >
+        </div>
+      <button id="add-phone-number" class="Button" onclick="addPhoneNumber()">Add more (+)</button>
+      <button id="remove-phone-number" class="Button" onclick="removePhoneNumber()">Remove (-)</button>
+      </div>
+
+      <button class="Button Button-submit">Submit</button>
+    </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("remove-phone-number").disabled = true;
+
+
+
+    function addPhoneNumber() {
+      var phoneNumbersContainer = document.getElementById("phoneNumbersContainer");
+      var phoneNumbersCount = phoneNumbersContainer.querySelectorAll("input[type=phone]").length;
+
+      console.log(phoneNumbersCount);
+
+      if(phoneNumbersCount => 1){
+    		document.getElementById("remove-phone-number").disabled = false;
+    	} else {
+    		document.getElementById("remove-phone-number").disabled = true;
+    	}
+
+      if(phoneNumbersCount >= 4){
+      	document.getElementById("add-phone-number").disabled = true;
+      }	else {
+      	document.getElementById("add-phone-number").disabled = false;
+      }
+
+      var newPhoneNumber = document.createElement("input");
+      newPhoneNumber.type = "phone";
+      newPhoneNumber.placeholder = `Enter your phone number (${phoneNumbersCount + 1})`;
+
+      phoneNumbersContainer.appendChild(newPhoneNumber);
+    }
+
+    function removePhoneNumber() {
+      var phoneNumbersContainer = document.getElementById("phoneNumbersContainer");
+      var phoneNumbersCount = phoneNumbersContainer.querySelectorAll("input[type=phone]").length;
+
+      console.log(phoneNumbersCount);
+
+      if(phoneNumbersCount > 2){
+    		document.getElementById("remove-phone-number").disabled = false;
+    	} else {
+    		document.getElementById("remove-phone-number").disabled = true;
+    	}
+
+    	if(phoneNumbersCount >= 6){
+      	document.getElementById("add-phone-number").disabled = true;
+      }	else {
+      	document.getElementById("add-phone-number").disabled = false;
+      }
+
+      if (phoneNumbersCount > 1) {
+      	phoneNumbersContainer.removeChild(phoneNumbersContainer.lastChild);
+      }
+    }
+
+    // function checkPhoneNumbersCount(phoneNumbersCount){
+    // 	if(phoneNumbersCount => 1){
+    // 		document.getElementById("remove-phone-number").disabled = false;
+    // 	} else {
+    // 		document.getElementById("remove-phone-number").disabled = true;
+    // 	}
+    // }
+  </script>
+</body>
+</html>
