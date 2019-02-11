@@ -27,32 +27,28 @@
       <li>Title5</li>
      </ul>
   </div>
-  <script>
 
-    var liElem = document.getElementsByTagName("li");
-    for(var i = 0; i <liElem.length; i++){
-        liElem[i].onclick = currentElement();
+  <script>
+    var liElements = document.getElementsByTagName("li");
+    for(var i = 0; i < liElements.length; i++) {
+      liElements[i].addEventListener("click", handleOnItemClick);
     }
 
-    function currentElement(){
-      var liElem = document.getElementsByTagName("li");
-      for(var i = 0; i <liElem.length; i++){
-        liElem[i].addEventListener("click", function() {
-          if(this.className != ' activeLi'){
-            var currentLi = document.getElementsByClassName("activeLi");
-              if (currentLi.length > 0) {
-                currentLi[0].className = currentLi[0].className.replace(" activeLi", "");
-                this.className += " activeLi";
-              } else {
-                currentLi[0].className = currentLi[0].className.replace(" activeLi", "");
-              }
-          }
-        });
+    function handleOnItemClick(event) {
+      var li = event.target;
+      clearActiveClassesExceptCurrent(li);
+
+      li.classList.toggle("activeLi");
+    }
+
+    function clearActiveClassesExceptCurrent(currentElement) {
+      var liElements = document.getElementsByTagName("li");
+      for(var i = 0; i < liElements.length; i++) {
+        if (liElements[i] !== currentElement) {
+         liElements[i].classList.remove("activeLi");
+        }
       }
     }
-
-
- </script>
- </body>
+  </script>
 </body>
 </html>
