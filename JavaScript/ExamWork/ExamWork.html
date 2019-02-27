@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>MyTodo</title>
+
+  <style>
+    #content{
+      margin: 0 auto;
+      width: 960px;
+    }
+
+    #content:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    h1{
+      text-align: center;
+      padding-top: 20px;
+      margin-bottom: 5px;
+    }
+
+    .header{
+      background-color: #3994F8;
+      color: #ffffff;
+    }
+
+    #create{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      padding: 5px 40px 30px 40px;
+    }
+
+    .addBtn, .taskPriority{
+      padding: 10px;
+      width: 25%;
+      background: #d9d9d9;
+      color: #555;
+      float: left;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 0;
+    }
+
+    .taskPriority{
+      height: 40px;
+    }
+
+    .addBtn:hover {
+      background-color: #bbbbbb;
+      color: #ffffff;
+    }
+
+    #newTodo {
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      width: 75%;
+      padding: 10px;
+      float: left;
+      font-size: 16px;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul li {
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      list-style-type: none;
+      background: #d9d9d9;
+      font-size: 16px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    ul li:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    ul li:hover {
+      background: #8e8a8a;
+    }
+
+    ul li.checked {
+      background: #888;
+      color: #fff;
+      text-decoration: line-through;
+    }
+
+    ul li.checked::before {
+      content: '';
+      position: absolute;
+      border-color: #fff;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      top: 10px;
+      left: 16px;
+      transform: rotate(45deg);
+      height: 15px;
+      width: 7px;
+    }
+
+    .closeBtn {
+      background-color: #6db1f9;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 12px 16px 12px 16px;
+    }
+
+    .closeBtn:hover {
+      background-color: #3994F8;
+      color: #ffffff;
+    }
+
+    .criticalPriority, .majorPriority, .minorPriority, .trivialPriority{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		border: 1px black;
+		border-radius: 10px;
+		padding-left: 5px;
+		padding-right: 5px;
+		margin-right: 10px;
+    }
+
+    .criticalPriority{
+    	background-color: red;
+    }
+
+    .majorPriority{
+    	background-color: orange;
+    }
+
+    .minorPriority{
+    	background-color: green;
+    	border-color: white;
+    	color: white;
+    }
+
+    .trivialPriority{
+    	background-color: blue;
+    	border-color: white;
+    	color: white;
+    }
+
+
+  </style>
+
+</head>
+<body>
+  <div id="content">
+
+  <div class="header">
+    <h1>Список задач</h1>
+    <div id="create">
+      <input autofocus type="text" name="newTodo" id="newTodo" placeholder="Задача...">
+      <select class="taskPriority" id="taskPriority">
+        <option value="critical" selected>Critical</option>
+        <option value="major">Major</option>
+        <option value="minor">Minor</option>
+        <option value="trivial">Trivial</option>
+      </select>
+      <span id="addBtn" class="addBtn" onclick = "addNewTodo()">Добавить</span>
+    </div>
+  </div>
+    <ul id="list">
+      <li class="checked">Освоить тему DOM</li>
+      <li>Освоить тему BOM</li>
+      <li>Сделать ДЗ по JS</li>
+    </ul>
+  </div>
+  <script>
+     var list = document.querySelector('ul');
+  if (localStorage.getItem('todos')) {
+    list.innerHTML = localStorage.getItem('todos');
+  }
+
+  var myList = document.getElementsByTagName("li");
+
+  for (var i = 0; i < myList.length; i++) {
+    var spanClose = document.createElement("span");
+    var textClose = document.createTextNode("\u2716");
+    spanClose.appendChild(textClose);
+    spanClose.className = "closeBtn";
+    myList[i].appendChild(spanClose);
+    toLocal();
+  }
+
+  var delLi = document.getElementsByClassName("closeBtn");
+
+  for (var i = 0; i < delLi.length; i++) {
+    delLi[i].onclick = function () {
+      var thisSpan = this.parentElement;
+      thisSpan.style.display = "none";
+    };
+    toLocal();
+  }
+
+  list.addEventListener('click', function (ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+    toLocal();
+  }, false);
+
+  function addNewTodo() {
+    var newLi = document.createElement("li");
+    var priority = document.getElementById("taskPriority").value;
+    var textPriority = document.createTextNode(priority);
+
+    var spanPriority = document.createElement("span");
+    spanPriority.appendChild(textPriority);
+    if (priority == 'critical') {
+      spanPriority.className = "criticalPriority";
+    } else if (priority == 'major') {
+      spanPriority.className = "majorPriority";
+    } else if (priority == 'minor') {
+      spanPriority.className = "minorPriority";
+    } else if (priority == 'trivial') {
+      spanPriority.className = "trivialPriority";
+    }
+
+    newLi.appendChild(spanPriority);
+
+    var inputTodo = document.getElementById("newTodo").value;
+    var textInputTodo = document.createTextNode(inputTodo);
+    newLi.appendChild(textInputTodo);
+
+    if (inputTodo === '' || inputTodo === null || inputTodo === undefined) {
+      alert("Вы не записали задание!");
+    } else {
+      document.getElementById("list").appendChild(newLi);
+    }
+    document.getElementById("newTodo").value = "";
+
+    var spanClose = document.createElement("span");
+    var textClose = document.createTextNode("\u2716");
+    spanClose.appendChild(textClose);
+    spanClose.className = "closeBtn";
+    newLi.appendChild(spanClose);
+
+    for (var i = 0; i < delLi.length; i++) {
+      delLi[i].onclick = function () {
+        var thisSpan = this.parentElement;
+        thisSpan.style.display = "none";
+      };
+    }
+
+    function sortList(ul) {
+      var ulLists = document.getElementById("list");
+
+      Array.from(ulLists.getElementsByTagName("li"))
+        .sort((a, b) => a.textContent.localeCompare(b.textContent))
+        .forEach(li => ulLists.appendChild(li));
+      toLocal();
+    }
+
+    sortList("list");
+
+    toLocal();
+  }
+
+  var todos;
+
+  function toLocal() {
+    todos = list.innerHTML;
+    localStorage.setItem('todos', todos);
+  }
+  </script>
+ </body>
+</html>
